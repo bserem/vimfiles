@@ -3,21 +3,23 @@ My vim configuration. Based on [Vundle](https://github.com/gmarik/vundle) for
 managing plugins and using the excellent
 [Solarized](https://github.com/altercation/vim-colors-solarized) as colorscheme.
 
-Vundle **IS** included, so there are only a few steps you need to do on first run.
+Vundle **IS** automatically installed on first run,  
+so there are only a few steps you need to do on first run.
 
 # Installation
 Clone this repo and install it in your home folder:
-    git clone https://github.com/bserem/vimfiles.git
-    cp vimfiles/.vimrc ~/.vimrc
-    cp -r vimfiles/.vim ~/.vim
-    cp -r vimfiles/.vimbackup ~/.vimbackup
+`git clone https://github.com/bserem/vimfiles.git`  
+`cp vimfiles/.vimrc ~/.vimrc`  
+`cp -r vimfiles/.vim ~/.vim`  
+`cp -r vimfiles/.vimbackup ~/.vimbackup`  
 
 # First Run
 Vundle will autoinstall itself on first run.
-Vim will inform you about about having problems setting the colorscheme, ignore them.
+Vim will inform you about about having problems setting the colorscheme, **ignore them**.
 
 From inside Vim run:
 `:BundleInstall`
+and all plugins and colorschemes that are set on the vimrc will be installed automatically.
 
 # Usage
 Study the .vimrc file to see what options are set.
