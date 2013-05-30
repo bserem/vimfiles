@@ -29,15 +29,13 @@ filetype off                   " required!
 Bundle 'tpope/vim-fugitive'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
-"Bundle 'garbas/vim-snipmate'
-Bundle 'gmarik/sudo-gui.vim'
 Bundle 'bserem/vim-drupal'
 " vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " ...
@@ -74,8 +72,8 @@ syntax on
 set nowrap "don't wrap lines
 
 set smartindent
-"set autoindent " always set autoindenting on
-"set copyindent " copy the previous indentation on autoindenting
+set autoindent " always set autoindenting on
+set copyindent " copy the previous indentation on autoindenting
 set tabstop=2 "number of spaces that a <Tab> in the file counts for
 set softtabstop=2 "number of spaces that a <Tab> counts for while performing editing operations
 set shiftwidth=2 "number of spaces to use for each step of (auto)indent
@@ -86,11 +84,11 @@ set smarttab "makes a <Tab> in front of a line insert blanks according to 'shift
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
 "set backspace=2 "Use standard backspace behavior
 
-set history=1000 " remember more commands and search history
-set undolevels=1000 " use many muchos levels of undo
+set history=1000 "remember more commands and search history
+set undolevels=1000 "use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
-set number "Show line numbers
+set relativenumber "Show relative line numbers
 set wildmode=longest,list "Complete longest string, then list alternatives
 set pastetoggle=<F2> "Toggle paste mode
 set fileformats=unix "Use Unix line endings
@@ -103,7 +101,7 @@ set ignorecase "ignore case on searches and everywhere else
 set hlsearch "highlight search terms
 set incsearch "show search matches as you type
 set infercase "make insert-matching preserve the already written characters
-"set mouse=a "enable the mouse in compatible terms for all modes
+set mouse="" "disable the mouse
 set smartcase "enable case sensitive search if pattern contains upper case
 set wildmenu "show possible completion matches
 set wildmode=list:longest "list all matches and complete to longest common string
@@ -122,14 +120,28 @@ nmap <silent> <F4> :NERDTreeToggle<CR>
 "Filter uninteresting files
 let NERDTreeIgnore = ['\.class$']
 
-function! NumberToggle()
+function! ToggleNumber()
   if(&relativenumber == 1)
     set number
   else
     set relativenumber
   endif
 endfunc
-nnoremap <F3> :call NumberToggle()<CR>
+nnoremap <silent> <F3> :call ToggleNumber()<CR>
+
+function! ToggleMouse()
+  if(&mouse == '')
+    set mouse=n
+    echo "Mouse usage enable for normal mode"
+  else
+    set mouse=
+    echo "Mouse usage disabled"
+  endif
+endfunction
+nnoremap <silent> <F12> :call ToggleMouse()<CR>
+
+nnoremap <silent> <F9> :FufBuffer<CR>
+nnoremap <silent> <F10> :FufFile<CR>
 
 "When in split screen, map <C-LeftArrow> and <C-RightArrow> to switch panes.
 nn ESC[5C <C-W>w

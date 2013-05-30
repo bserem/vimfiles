@@ -26,13 +26,16 @@ The following keys are mapped:
 * F2 for toggling paste mode
 * F3 for toggling relative numbers
 * F4 for NERDTree 
+* F9 for FuzzyFinding open buffer
+* F10 for FuzzyFinding files
+* F12 for toggling mouse from disabled to enabled in **normal** mode
   
 A .vimbackup folder is also created. My config keeps swap and backup files  
 in there in order to now mess with your filesystem (and your VCS). 
 You can find more info on that inside the .vimrc file. 
 
 Adapt the .vimrc file to your needs, mainly by adding/removing plugins.
-You can use `:BundleClean` and `:BundleInstall` for let Vundle handle the dirty work.
+You can use `:BundleClean` and `:BundleInstall` and let Vundle handle the dirty work.
 
 As for the set options, if you believe I'm missing something important please let me know.
 
