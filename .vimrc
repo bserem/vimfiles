@@ -32,6 +32,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
+"Bundle 'SirVer/ultisnips'
 Bundle 'bserem/vim-drupal'
 " vim-scripts repos
 Bundle 'L9'
@@ -84,8 +85,8 @@ set smarttab "makes a <Tab> in front of a line insert blanks according to 'shift
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
 "set backspace=2 "Use standard backspace behavior
 
-set history=1000 "remember more commands and search history
-set undolevels=1000 "use many muchos levels of undo
+set history=1000 " remember more commands and search history
+set undolevels=1000 " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 set relativenumber "Show relative line numbers
@@ -101,7 +102,7 @@ set ignorecase "ignore case on searches and everywhere else
 set hlsearch "highlight search terms
 set incsearch "show search matches as you type
 set infercase "make insert-matching preserve the already written characters
-set mouse="" "disable the mouse
+set mouse="" "disable the mouse in compatible terms for all modes
 set smartcase "enable case sensitive search if pattern contains upper case
 set wildmenu "show possible completion matches
 set wildmode=list:longest "list all matches and complete to longest common string
@@ -117,6 +118,7 @@ set completeopt=menuone,longest "show menu and complete longest, don't show prev
 
 "Toggle NERD Tree on/off
 nmap <silent> <F4> :NERDTreeToggle<CR> 
+
 "Filter uninteresting files
 let NERDTreeIgnore = ['\.class$']
 
@@ -132,7 +134,7 @@ nnoremap <silent> <F3> :call ToggleNumber()<CR>
 function! ToggleMouse()
   if(&mouse == '')
     set mouse=n
-    echo "Mouse usage enable for normal mode"
+    echo "Mouse usage enabled for normal mode"
   else
     set mouse=
     echo "Mouse usage disabled"
