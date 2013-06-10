@@ -91,7 +91,6 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 
 set relativenumber "Show relative line numbers
 set wildmode=longest,list "Complete longest string, then list alternatives
-set pastetoggle=<F2> "Toggle paste mode
 set fileformats=unix "Use Unix line endings
 set showmode "Show whether in Visual, Replace, or Insert Mode
 set showmatch "Show matching brackets/parentheses
@@ -116,11 +115,7 @@ set directory=~/.vimbackup//,/tmp
 set pumheight=10 "maximum number of popup menu items for Insert mode completion
 set completeopt=menuone,longest "show menu and complete longest, don't show preview window
 
-"Toggle NERD Tree on/off
-nmap <silent> <F4> :NERDTreeToggle<CR> 
-
-"Filter uninteresting files
-let NERDTreeIgnore = ['\.class$']
+set pastetoggle=<F2> "Toggle paste mode
 
 function! ToggleNumber()
   if(&relativenumber == 1)
@@ -130,6 +125,28 @@ function! ToggleNumber()
   endif
 endfunc
 nnoremap <silent> <F3> :call ToggleNumber()<CR>
+
+"Toggle NERD Tree on/off
+nmap <silent> <F4> :NERDTreeToggle<CR> 
+"Filter uninteresting files
+let NERDTreeIgnore = ['\.class$']
+
+function! ToggleSpelllang()
+  if(&spell == 0)
+    set spell spelllang=el
+    echo "Spell is on, language is Greek"
+  elseif(&spelllang == 'el') && (&spell == 1)
+    set spell spelllang=en_us
+    echo "Spell is on, language is US English"
+  elseif(&spelllang == 'en_us') && (&spell == 1)
+    set nospell
+    echo "Spell is off"
+  endif
+endfunc
+nnoremap <silent> <F7> :call ToggleSpelllang()<CR>
+
+nnoremap <silent> <F9> :FufBuffer<CR>
+nnoremap <silent> <F10> :FufFile<CR>
 
 function! ToggleMouse()
   if(&mouse == '')
@@ -141,9 +158,6 @@ function! ToggleMouse()
   endif
 endfunction
 nnoremap <silent> <F12> :call ToggleMouse()<CR>
-
-nnoremap <silent> <F9> :FufBuffer<CR>
-nnoremap <silent> <F10> :FufFile<CR>
 
 "When in split screen, map <C-LeftArrow> and <C-RightArrow> to switch panes.
 nn ESC[5C <C-W>w
