@@ -53,10 +53,11 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle command are not allowed..
 
 set encoding=UTF-8 "Always edit in utf-8
+set fileencoding=UTF-8 "Always edit in utf-8
 
 "Appearance
 set ruler "show the line and column number of the cursor position
-set background=dark
+set background=dark "we plan to use a dark background
 colorscheme solarized
 match ErrorMsg '\%>80v.\+' "highlight anything after line 80
 set title " change the terminal's title
@@ -88,6 +89,7 @@ set backspace=indent,eol,start "allow backspacing over everything in insert mode
 set history=1000 " remember more commands and search history
 set undolevels=1000 " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
+set timeoutlen=300 " super low delay
 
 set relativenumber "Show relative line numbers
 set wildmode=longest,list "Complete longest string, then list alternatives
@@ -107,6 +109,20 @@ set wildmenu "show possible completion matches
 set wildmode=list:longest "list all matches and complete to longest common string
 set scrolloff=3 "minimal number of screen lines to keep above/below the cursor 
 
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"              | | | | |  |   |      |  |     |    |
+"              | | | | |  |   |      |  |     |    + current column
+"              | | | | |  |   |      |  |     +-- current line
+"              | | | | |  |   |      |  +-- current % into file
+"              | | | | |  |   |      +-- current syntax in square brackets
+"              | | | | |  |   +-- current fileformat
+"              | | | | |  +-- number of lines
+"              | | | | +-- preview flag in square brackets
+"              | | | +-- help flag in square brackets
+"              | | +-- readonly flag in square brackets
+"              | +-- rodified flag in square brackets
+"              +-- full path to file in the buffer
+
 "Remove swap and backup files from working directory
 set backupdir=~/.vimbackup//,/tmp
 set directory=~/.vimbackup//,/tmp
@@ -119,12 +135,23 @@ set pastetoggle=<F2> "Toggle paste mode
 
 function! ToggleNumber()
   if(&relativenumber == 1)
+    set norelativenumber
     set number
   else
     set relativenumber
   endif
 endfunc
 nnoremap <silent> <F3> :call ToggleNumber()<CR>
+
+function! HideNumber()
+  set norelativenumber
+  set number
+  set nonumber
+endfunc
+"make shift-f3 work
+set <S-F3>=O1;2R
+"hide numbers with shift-f3
+nnoremap <S-F3> :call HideNumber()<CR>
 
 "Toggle NERD Tree on/off
 nmap <silent> <F4> :NERDTreeToggle<CR> 
@@ -144,6 +171,13 @@ function! ToggleSpelllang()
   endif
 endfunc
 nnoremap <silent> <F7> :call ToggleSpelllang()<CR>
+
+function! CP1253toUtf8()
+  :e ++enc=CP1253
+  :w ++enc=utf-8
+  :n
+endfunc
+nnoremap <F8> :call CP1253toUtf8()<CR>
 
 nnoremap <silent> <F9> :FufBuffer<CR>
 nnoremap <silent> <F10> :FufFile<CR>
