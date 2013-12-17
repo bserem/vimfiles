@@ -8,7 +8,7 @@ so there are only a few steps you need to do on first run.
 
 # Installation
 Clone this repo and install it in your home folder:
-`git clone https://github.com/bserem/vimfiles.git && mv vimfiles/.vim* ~`  
+`git clone https://github.com/bserem/vimfiles.git && cp -r vimfiles/.vim* ~`  
 If you have some other configuration already you should backup it up 
 and remove it before running the above commands bu issuing `rm -rf .vim*`.
 
@@ -19,6 +19,10 @@ Vim will inform you about about having problems setting the colorscheme, **ignor
 From inside Vim run:
 `:BundleInstall`
 and all plugins and colorschemes that are set on the vimrc will be installed automatically.
+
+# Updating
+If you haven't touch the .vimrc file, then you can run `git pull` from inside the project folder and copy the files again in your directory.
+Updating the plugins is as simple as calling `:BundleUpdate` from inside vim.
 
 # Usage
 Study the .vimrc file to see what options are set.
