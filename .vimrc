@@ -34,6 +34,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 "Bundle 'SirVer/ultisnips'
 Bundle 'bserem/vim-drupal'
+Bundle 'bserem/vim-greek-spell'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'

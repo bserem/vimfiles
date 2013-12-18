@@ -30,6 +30,7 @@ The following keys are mapped:
 * F2 for toggling paste mode
 * F3 for toggling relative numbers
 * F4 for NERDTree 
+* F7 toggles spelling ON:english/ON:greek/OFF
 * F9 for FuzzyFinding open buffer
 * F10 for FuzzyFinding files
 * F12 for toggling mouse from disabled to enabled in **normal** mode
