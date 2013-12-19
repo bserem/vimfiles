@@ -92,7 +92,8 @@ set undolevels=1000 " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set timeoutlen=300 " super low delay
 
-set relativenumber "Show relative line numbers
+"set relativenumber "Show relative line numbers
+set number "Show line numbers
 set wildmode=longest,list "Complete longest string, then list alternatives
 set fileformats=unix "Use Unix line endings
 set showmode "Show whether in Visual, Replace, or Insert Mode
@@ -145,6 +146,7 @@ endfunc
 nnoremap <silent> <F3> :call ToggleNumber()<CR>
 
 function! HideNumber()
+  "because of relative numbers we need to cycle through all of these
   set norelativenumber
   set number
   set nonumber
