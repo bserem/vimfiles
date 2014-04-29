@@ -38,6 +38,8 @@ Bundle 'bserem/vim-greek-spell'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+Bundle 'gregsexton/gitv'
+Bundle 'Keithbsmiley/investigate.vim'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " ...
@@ -211,3 +213,11 @@ if exists('&undofile') && !&undofile
   set undodir=~/.vimbackup//
   set undofile
 endif
+
+"nnoremap gz :!zeal --query "<cword>"&<CR><CR>
+" Languages {
+" Greek {
+" Use Greek letters in command mode.
+        :set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
+" }
+" }
