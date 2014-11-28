@@ -27,19 +27,15 @@ filetype off                   " required!
 "
 " original repos on github
 Bundle 'tpope/vim-fugitive'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
-"Bundle 'SirVer/ultisnips'
 Bundle 'bserem/vim-drupal'
-Bundle 'bserem/vim-greek-spell'
+Bundle 'gregsexton/gitv'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'gregsexton/gitv'
-Bundle 'Keithbsmiley/investigate.vim'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " ...
@@ -176,13 +172,6 @@ function! ToggleSpelllang()
   endif
 endfunc
 nnoremap <silent> <F7> :call ToggleSpelllang()<CR>
-
-function! CP1253toUtf8()
-  :e ++enc=CP1253
-  :w ++enc=utf-8
-  :n
-endfunc
-nnoremap <F8> :call CP1253toUtf8()<CR>
 
 nnoremap <silent> <F9> :FufBuffer<CR>
 nnoremap <silent> <F10> :FufFile<CR>
