@@ -33,6 +33,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bserem/vim-drupal'
 Bundle 'gregsexton/gitv'
+Bundle 'captbaritone/better-indent-support-for-php-with-html'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -63,6 +64,12 @@ set title " change the terminal's title
 "set visualbell " don't beep - DO NOT ENABLE THIS BECAUSE IS HANGS
                 "WHEN ROLLING PAST THE FIRST AND LAST LINE
 set noerrorbells " don't beep
+
+" Play well with people working on other OS
+set ffs=unix,dos
+
+" Indent HTML and PHP properly
+"
 
 " Enable syntax highlighting
 if &t_Co > 1
