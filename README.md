@@ -8,7 +8,11 @@ so there are only a few steps you need to do on first run.
 
 # Installation
 Clone this repo and install it in your home folder:
-`git clone https://github.com/bserem/vimfiles.git && cp -r vimfiles/.vim* ~`  
+```
+cd ~
+git clone https://github.com/bserem/vimfiles.git
+ln -s vimfiles/.vimrc .vimrc
+```  
 If you have some other configuration already you should backup it up 
 and remove it before running the above commands bu issuing `rm -rf .vim*`.
 
