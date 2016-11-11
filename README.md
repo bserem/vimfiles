@@ -14,6 +14,7 @@ git clone https://github.com/bserem/vimfiles.git
 ln -s vimfiles/.vimrc .vimrc
 vim
 ```
+Note: you might run into problem if you work on jailed shells (not bash/zsh).
 
 ## First Run
 Vundle will autoinstall itself on first run.
