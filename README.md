@@ -12,17 +12,33 @@ Clone this repo and install it in your home folder:
 cd ~
 git clone https://github.com/bserem/vimfiles.git
 ln -s vimfiles/.vimrc .vimrc
-```  
-If you have some other configuration already you should backup it up 
-and remove it before running the above commands bu issuing `rm -rf .vim*`.
+vim
+```
 
-# First Run
+## First Run
 Vundle will autoinstall itself on first run.
 Vim will inform you about about having problems setting the colorscheme, **ignore them**.
 
 From inside Vim run:
-`:PluginInstall`
+````
+:PluginInstall
+```
 and all plugins and colorschemes that are set on the vimrc will be installed automatically.
+
+## Problems on first run?
+If you get errors with the autoinstallation of Vim Vundle (which manages all other
+plugins) the please do the following:
+```
+git clone https://github.com/bserem/vimfiles.git
+ln -s vimfiles/.vimrc .vimrc
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim
+```
+and run `PluginInstall` inside vim.
+
+NOTE: If you have some other configuration already you should backup it up 
+and remove it before running the above commands bu issuing `rm -rf .vim* && rm -rf vimfiles`.
+
 
 # Updating
 If you haven't touch the .vimrc file, then you can run `git pull` from inside the
