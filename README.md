@@ -17,12 +17,13 @@ Vundle will autoinstall itself on first run.
 Vim will inform you about about having problems setting the colorscheme, **ignore them**.
 
 From inside Vim run:
-`:BundleInstall`
+`:PluginInstall`
 and all plugins and colorschemes that are set on the vimrc will be installed automatically.
 
 # Updating
-If you haven't touch the .vimrc file, then you can run `git pull` from inside the project folder and copy the files again in your directory.
-Updating the plugins is as simple as calling `:BundleUpdate` from inside vim.
+If you haven't touch the .vimrc file, then you can run `git pull` from inside the
+project folder and copy the files again in your directory.
+Updating the plugins is as simple as calling `:PluginUpdate` from inside vim.
 
 # Usage
 Study the .vimrc file to see what options are set.
@@ -44,9 +45,12 @@ You can use `:BundleClean` and `:BundleInstall` and let Vundle handle the dirty 
 
 As for the set options, if you believe I'm missing something important please let me know.
 
+# CTags
+Tagbar requires exuberant-ctags in your system. Install them from your package manager.
+
 # FAQ
 For more info on Vundle please visit the authors repo at
-https://github.com/gmarik/vundle
+https://github.com/VundleVim/Vundle.vim
 For Solarized you can find about the vim colorscheme here at
 https://github.com/altercation/vim-colors-solarized and the official site
 http://ethanschoonover.com/solarized for all other utilities.

@@ -1,65 +1,68 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
 " START - Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   let iCanHazVundle=0
 endif
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 if iCanHazVundle == 0
   echo "Installing Bundles, please ignore key map error messages"
   echo ""
-  :BundleInstall
+  :PluginInstall
 endif
 " END - Setting up Vundle - the vim plugin bundler
 
-set nocompatible               " be iMproved
-filetype off                   " required!
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'myusuf3/numbers.vim'
+"Plugin 'Shougo/neocomplete.vim'
+Plugin 'altercation/vim-colors-solarized' "colorscheme
+Plugin 'gregsexton/gitv'
+Plugin 'captbaritone/better-indent-support-for-php-with-html'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'wincent/command-t'
+Plugin 'godlygeek/tabular'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'itchyny/lightline.vim'
+Plugin 'gregsexton/MatchTag'
+Plugin 'mbbill/undotree'
+Plugin 'https://git.drupal.org/project/vimrc.git'
+Plugin 'majutsushi/tagbar'
+Plugin 'joonty/vdebug'
 
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bserem/vim-drupal'
-Bundle 'gregsexton/gitv'
-Bundle 'captbaritone/better-indent-support-for-php-with-html'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-" ...
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 
-filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
+set laststatus=2
 
-set encoding=UTF-8 "Always edit in utf-8
-set fileencoding=UTF-8 "Always edit in utf-8
+
+" Put your non-Plugin stuff after this line
 
 "Appearance
 set ruler "show the line and column number of the cursor position
 set background=dark "we plan to use a dark background
 colorscheme solarized
-match ErrorMsg '\%>80v.\+' "highlight anything after line 80
+"match ErrorMsg '\%>80v.\+' "highlight anything after line 80
+set colorcolumn=81 "mark column 81
 set title " change the terminal's title
 "set visualbell " don't beep - DO NOT ENABLE THIS BECAUSE IS HANGS
                 "WHEN ROLLING PAST THE FIRST AND LAST LINE
@@ -86,7 +89,7 @@ set tabstop=2 "number of spaces that a <Tab> in the file counts for
 set softtabstop=2 "number of spaces that a <Tab> counts for while performing editing operations
 set shiftwidth=2 "number of spaces to use for each step of (auto)indent
 set shiftround " use multiple of shiftwidth when indenting with '<' and '>'
-set expandtab "use the appropriate number of spaces to insert a <Tab>.
+set expandtab "save as spaces rather than tabs
 set smarttab "makes a <Tab> in front of a line insert blanks according to 'shiftwidth'
 
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
@@ -157,7 +160,7 @@ function! HideNumber()
   set nonumber
 endfunc
 "make shift-f3 work
-set <S-F3>=O1;2R
+set <S-F3>=O1;2R
 "hide numbers with shift-f3
 nnoremap <S-F3> :call HideNumber()<CR>
 
@@ -179,7 +182,7 @@ function! ToggleSpelllang()
   endif
 endfunc
 nnoremap <silent> <F7> :call ToggleSpelllang()<CR>
-
+nmap <F8> :TagbarToggle<CR>
 nnoremap <silent> <F9> :FufBuffer<CR>
 nnoremap <silent> <F10> :FufFile<CR>
 
