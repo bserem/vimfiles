@@ -24,6 +24,10 @@ endif
 " END - Setting up Vundle - the vim plugin bundler
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround.git'
+Plugin 'ervandew/supertab'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
@@ -168,6 +172,7 @@ nnoremap <S-F3> :call HideNumber()<CR>
 nmap <silent> <F4> :NERDTreeToggle<CR> 
 "Filter uninteresting files
 let NERDTreeIgnore = ['\.class$']
+let g:ctrlp_map = '<F5>'
 
 function! ToggleSpelllang()
   if(&spell == 0)
