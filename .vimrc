@@ -53,6 +53,9 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
+set langmenu=en_US.UTF-8   " sets the language of the menu (gvim)
+language C                 " sets the language of the messages / ui (vim) to english
+
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ }
