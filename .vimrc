@@ -27,12 +27,15 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
 Plugin 'ervandew/supertab'
 "Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/neocomplete.vim'
+Plugin 'gabrielelana/vim-markdown'
+Plugin 'othree/csscomplete.vim'
+Plugin 'othree/vim-autocomplpop'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'myusuf3/numbers.vim'
-"Plugin 'Shougo/neocomplete.vim'
 Plugin 'altercation/vim-colors-solarized' "colorscheme
 Plugin 'gregsexton/gitv'
 Plugin 'captbaritone/better-indent-support-for-php-with-html'
@@ -46,6 +49,11 @@ Plugin 'mbbill/undotree'
 Plugin 'https://git.drupal.org/project/vimrc.git'
 Plugin 'majutsushi/tagbar'
 Plugin 'joonty/vdebug'
+Plugin 'kopischke/vim-fetch'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'lumiliet/vim-twig'
+Plugin 'kopischke/vim-fetch'
+Plugin 'L9'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,16 +61,10 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
+" Put your non-Plugin stuff after this line
 set langmenu=en_US.UTF-8   " sets the language of the menu (gvim)
 language C                 " sets the language of the messages / ui (vim) to english
-
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
 set laststatus=2
-
-
-" Put your non-Plugin stuff after this line
 
 "Appearance
 set ruler "show the line and column number of the cursor position
@@ -149,27 +151,8 @@ set pumheight=10 "maximum number of popup menu items for Insert mode completion
 set completeopt=menuone,longest "show menu and complete longest, don't show preview window
 
 set pastetoggle=<F2> "Toggle paste mode
-
-function! ToggleNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <silent> <F3> :call ToggleNumber()<CR>
-
-function! HideNumber()
-  "because of relative numbers we need to cycle through all of these
-  set norelativenumber
-  set number
-  set nonumber
-endfunc
-"make shift-f3 work
-set <S-F3>=O1;2R
-"hide numbers with shift-f3
-nnoremap <S-F3> :call HideNumber()<CR>
+"Toggle Numbers
+nnoremap <F3> :NumbersToggle<CR>
 
 "Toggle NERD Tree on/off
 nmap <silent> <F4> :NERDTreeToggle<CR> 
@@ -228,3 +211,66 @@ endif
         :set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
 " }
 " }
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'LightlineModified',
+      \   'readonly': 'LightlineReadonly',
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
+      "\ 'subseparator': { 'left': '', 'right': '' }
+      "\ 'separator': { 'left': '', 'right': '' },
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '': ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? '⎇  '.branch : ''
+    "return branch !=# '' ? ' '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
