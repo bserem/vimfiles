@@ -31,10 +31,11 @@ Plugin 'ervandew/supertab'
 Plugin 'gabrielelana/vim-markdown'
 Plugin 'othree/csscomplete.vim'
 Plugin 'othree/vim-autocomplpop'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'garbas/vim-snipmate'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'altercation/vim-colors-solarized' "colorscheme
 Plugin 'gregsexton/gitv'
@@ -46,10 +47,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
 Plugin 'gregsexton/MatchTag'
 Plugin 'mbbill/undotree'
-Plugin 'https://git.drupal.org/project/vimrc.git'
+Plugin 'git://drupalcode.org/project/vimrc.git', {'rtp': 'bundle/vim-plugin-for-drupal/'}
 Plugin 'majutsushi/tagbar'
 Plugin 'joonty/vdebug'
-Plugin 'kopischke/vim-fetch'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'lumiliet/vim-twig'
 Plugin 'kopischke/vim-fetch'
@@ -68,8 +68,9 @@ set laststatus=2
 
 "Appearance
 set ruler "show the line and column number of the cursor position
-set background=dark "we plan to use a dark background
+set background=light "we plan to use a dark background
 colorscheme solarized
+
 "match ErrorMsg '\%>80v.\+' "highlight anything after line 80
 set colorcolumn=81 "mark column 81
 set title " change the terminal's title
@@ -80,9 +81,6 @@ set noerrorbells " don't beep
 " Play well with people working on other OS
 set ffs=unix,dos
 
-" Indent HTML and PHP properly
-"
-
 " Enable syntax highlighting
 if &t_Co > 1
   syntax enable
@@ -90,7 +88,6 @@ endif
 syntax on
 
 set nowrap "don't wrap lines
-
 set smartindent
 set autoindent " always set autoindenting on
 set copyindent " copy the previous indentation on autoindenting
@@ -100,15 +97,12 @@ set shiftwidth=2 "number of spaces to use for each step of (auto)indent
 set shiftround " use multiple of shiftwidth when indenting with '<' and '>'
 set expandtab "save as spaces rather than tabs
 set smarttab "makes a <Tab> in front of a line insert blanks according to 'shiftwidth'
-
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
 "set backspace=2 "Use standard backspace behavior
-
 set history=1000 " remember more commands and search history
 set undolevels=1000 " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set timeoutlen=300 " super low delay
-
 "set relativenumber "Show relative line numbers
 set number "Show line numbers
 set wildmode=longest,list "Complete longest string, then list alternatives
@@ -116,7 +110,6 @@ set fileformats=unix "Use Unix line endings
 set showmode "Show whether in Visual, Replace, or Insert Mode
 set showmatch "Show matching brackets/parentheses
 set formatoptions=1 "Don't wrap text after a one-letter word
-
 set incsearch "Find as you type
 set ignorecase "ignore case on searches and everywhere else
 set hlsearch "highlight search terms
@@ -160,19 +153,6 @@ nmap <silent> <F4> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.class$']
 let g:ctrlp_map = '<F5>'
 
-function! ToggleSpelllang()
-  if(&spell == 0)
-    set spell spelllang=el
-    echo "Spell is on, language is Greek"
-  elseif(&spelllang == 'el') && (&spell == 1)
-    set spell spelllang=en_us
-    echo "Spell is on, language is US English"
-  elseif(&spelllang == 'en_us') && (&spell == 1)
-    set nospell
-    echo "Spell is off"
-  endif
-endfunc
-nnoremap <silent> <F7> :call ToggleSpelllang()<CR>
 nmap <F8> :TagbarToggle<CR>
 nnoremap <silent> <F9> :FufBuffer<CR>
 nnoremap <silent> <F10> :FufFile<CR>
@@ -191,6 +171,15 @@ nnoremap <silent> <F12> :call ToggleMouse()<CR>
 "When in split screen, map <C-LeftArrow> and <C-RightArrow> to switch panes.
 nn ESC[5C <C-W>w
 nn ESC[5R <C-W>W
+
+" Ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+"Snipmate
+
 
 "Uncomment the following to have Vim jump to the last position when reopening a file
 if has("autocmd")
