@@ -138,6 +138,8 @@ set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
 "Remove swap and backup files from working directory
 set backupdir=~/.vimbackup//,/tmp
 set directory=~/.vimbackup//,/tmp
+"Set location of .viminfo file, to play well with hosts that protect home folder
+set viminfo+=n~/.vim/viminfo
 
 "Completion
 set pumheight=10 "maximum number of popup menu items for Insert mode completion
