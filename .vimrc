@@ -36,7 +36,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'garbas/vim-snipmate'
-Plugin 'myusuf3/numbers.vim'
 Plugin 'altercation/vim-colors-solarized' "colorscheme
 Plugin 'gregsexton/gitv'
 Plugin 'captbaritone/better-indent-support-for-php-with-html'
